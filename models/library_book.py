@@ -18,7 +18,9 @@ class LibraryBook(models.Model):
          ('borrowed', 'Borrowed'),
          ('lost', 'Lost')],
         'State', default="available")
+    description = fields.Html('Description', sanitize=True, strip_style=False)
     cost_price = fields.Float('Book Cost')
+    currency_id = fields.Many2one('res.currency', string='Currency')
     category_id = fields.Many2one('library.book.category')
 
     def make_available(self):
